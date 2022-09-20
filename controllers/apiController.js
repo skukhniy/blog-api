@@ -1,4 +1,5 @@
 const express = require("express");
+const { off } = require("../app");
 const Post = require("../models/posts");
 
 // get all posts
@@ -12,8 +13,9 @@ exports.getPosts = async (req, res) => {
 	// res.json("Get Posts");
 };
 
+// grab a specific post
 exports.getOnePost = (req, res) => {
-	res.json(`Get Post ${req.params.id}`);
+	res.json(res.post);
 };
 
 // create a post
@@ -35,8 +37,25 @@ exports.createPost = async (req, res) => {
 };
 
 // update post
-exports.updatePost = (req, res) => {
-	res.json(`update post ${req.params.id}`);
+exports.updatePost = async (req, res) => {
+	if (req.body.content != null) {
+		res.post.content = req.body.content;
+	}
+	if (req.body.topic != null) {
+		res.post.topic = req.body.topic;
+	}
+	if (req.body.published != null) {
+		res.post.published = req.body.published;
+	}
+	if (req.body.date != null) {
+		res.post.date = req.body.date;
+	}
+	try {
+		const updatedPost = await res.post.save();
+		res.json(updatedPost);
+	} catch (err) {
+		res.status(400).json({ message: "error" });
+	}
 };
 
 // delete post
