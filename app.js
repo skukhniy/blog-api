@@ -3,11 +3,27 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 
+// configs dotenv so the database URL can be grabbed from the env file
+dotenv.config();
+
+// connect to DB
+const mongoDB = process.end.DATABASE_URL;
+
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+
+// Bind connection to error event (to get notification of connection errors)
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+// init express
+var app = express();
+
+// routers
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
