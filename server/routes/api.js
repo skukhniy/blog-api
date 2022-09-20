@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/apiController");
-const Post = require("../models/posts");
 
 // get all posts
 router.get("/", controller.getPosts);
