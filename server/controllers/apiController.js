@@ -21,6 +21,7 @@ exports.getOnePost = (req, res) => {
 // create a post
 exports.createPost = async (req, res) => {
 	const post = new Post({
+		title: req.body.title,
 		content: req.body.content,
 		topic: req.body.topic,
 		published: req.body.published,
@@ -38,6 +39,9 @@ exports.createPost = async (req, res) => {
 
 // update post
 exports.updatePost = async (req, res) => {
+	if (req.body.title != null) {
+		res.post.title = req.body.title;
+	}
 	if (req.body.content != null) {
 		res.post.content = req.body.content;
 	}

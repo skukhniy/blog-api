@@ -5,6 +5,14 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const flash = require("express-flash");
+const session = require("express-session");
+
+const initalizePassport = require("./passport-config");
+initalizePassport(passport, (username) =>
+	users.find((user) => user.username === username)
+);
 
 // configs dotenv so the database URL can be grabbed from the env file
 dotenv.config();
@@ -24,6 +32,7 @@ var app = express();
 // routers
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
+var adminRouter = require("./routes/admin");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -34,9 +43,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+	})
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
