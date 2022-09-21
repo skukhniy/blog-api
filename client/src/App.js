@@ -1,8 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Admin from "./components/Admin";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 
 function App() {
 	const [posts, setPosts] = useState(null);
@@ -16,6 +17,7 @@ function App() {
 
 			if (response.ok) {
 				setPosts(json);
+				console.log(json);
 			}
 		};
 		fetchPosts();
@@ -25,8 +27,8 @@ function App() {
 		<div>
 			<BrowserRouter>
 				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route exact path="/admin/" element={<Admin />} />
+					<Route exact path="/" element={<Home posts={posts} />} />
+					<Route exact path="/admin/" element={<Admin posts={posts} />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
