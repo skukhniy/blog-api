@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
+import PostPage from "./pages/PostPage";
+import NavBar from "./components/NavBar";
 
 function App() {
 	const [posts, setPosts] = useState(null);
@@ -23,12 +25,21 @@ function App() {
 		fetchPosts();
 	}, []);
 
+	let postRoutes;
+	if (posts) {
+		postRoutes = posts.map((post) => (
+			<Route path={`/post/${post._id}`} element={<PostPage post={post} />} />
+		));
+	}
+
 	return (
 		<div>
 			<BrowserRouter>
+				<NavBar />
 				<Routes>
 					<Route exact path="/" element={<Home posts={posts} />} />
 					<Route exact path="/admin/" element={<Admin posts={posts} />} />
+					{posts && postRoutes}
 				</Routes>
 			</BrowserRouter>
 		</div>
