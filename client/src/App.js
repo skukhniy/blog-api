@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.scss";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import PostPage from "./pages/PostPage";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
 
 function App() {
 	const [posts, setPosts] = useState(null);
@@ -39,6 +40,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Home posts={posts} />} />
 					<Route exact path="/admin/" element={<Admin posts={posts} />} />
+					<Route exact path="/admin/login" element={<Login />} />
 					{posts && postRoutes}
 				</Routes>
 			</BrowserRouter>
