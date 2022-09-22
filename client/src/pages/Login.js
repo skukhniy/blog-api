@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
-export default function Login({ setAdmin }) {
+export default function Login({ adminData, setAdmin }) {
 	const [loginUsername, setUsername] = useState("");
 	const [loginPassword, setPassword] = useState("");
+	const [errorDisplay, setError] = useState(null);
 
 	const login = async () => {
 		await axios({
@@ -16,14 +18,20 @@ export default function Login({ setAdmin }) {
 			url: "http://localhost:4000/admin/login",
 		}).then((res) => {
 			console.log(res);
-			axios({
-				method: "get",
-				withCredentials: true,
-				url: "http://localhost:4000/admin/login",
-			}).then((res) => {
-				console.log(res);
-				setAdmin(res.data);
-			});
+			if (res.data === "Incorrect User or Password") {
+				setError(res.data);
+				console.log(errorDisplay);
+			} else {
+				axios({
+					method: "get",
+					withCredentials: true,
+					url: "http://localhost:4000/admin/login",
+				}).then((res) => {
+					console.log(res);
+					setAdmin(res.data);
+					setError(null);
+				});
+			}
 		});
 	};
 
@@ -55,6 +63,9 @@ export default function Login({ setAdmin }) {
 			<button onClick={login} type="submit">
 				Login
 			</button>
+			{errorDisplay && (
+				<p className="text-danger fw-bold mt-4">{errorDisplay}</p>
+			)}
 		</div>
 	);
 }

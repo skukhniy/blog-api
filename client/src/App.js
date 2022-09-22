@@ -1,15 +1,17 @@
 import "./styles/App.scss";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import PostPage from "./pages/PostPage";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
+import axios from "axios";
 
 function App() {
 	const [posts, setPosts] = useState(null);
+	const [adminData, setAdmin] = useState(null);
 	// sets state and grabs post API
 	// will only fire one time
 	useEffect(() => {
@@ -22,7 +24,22 @@ function App() {
 				console.log(json);
 			}
 		};
+		const checkAdmin = () => {
+			axios({
+				method: "get",
+				withCredentials: true,
+				url: "http://localhost:4000/admin/login",
+			}).then((res) => {
+				console.log(res);
+				if (res.data) {
+					setAdmin(res.data);
+				} else {
+					setAdmin(null);
+				}
+			});
+		};
 		fetchPosts();
+		checkAdmin();
 	}, []);
 
 	let postRoutes;
@@ -38,8 +55,28 @@ function App() {
 				<NavBar />
 				<Routes>
 					<Route exact path="/" element={<Home posts={posts} />} />
-					<Route exact path="/admin/" element={<Admin posts={posts} />} />
-					<Route exact path="/admin/login" element={<Login />} />
+					<Route
+						exact
+						path="/admin/"
+						element={
+							adminData ? (
+								<Admin adminData={adminData} setAdmin={setAdmin} />
+							) : (
+								<Navigate to="/admin/login" />
+							)
+						}
+					/>
+					<Route
+						exact
+						path="/admin/login"
+						element={
+							adminData ? (
+								<Navigate to="/admin" />
+							) : (
+								<Login adminData={adminData} setAdmin={setAdmin} />
+							)
+						}
+					/>
 					{posts && postRoutes}
 				</Routes>
 			</BrowserRouter>
