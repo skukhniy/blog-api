@@ -10,12 +10,11 @@ import Login from "./pages/Login";
 
 function App() {
 	const [posts, setPosts] = useState(null);
-
 	// sets state and grabs post API
 	// will only fire one time
 	useEffect(() => {
 		const fetchPosts = async () => {
-			const response = await fetch("/api/");
+			const response = await fetch("http://localhost:4000/api/");
 			const json = await response.json();
 
 			if (response.ok) {

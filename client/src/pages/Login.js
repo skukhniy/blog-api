@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Login() {
+export default function Login({ setAdmin }) {
 	const [loginUsername, setUsername] = useState("");
 	const [loginPassword, setPassword] = useState("");
 
-	const login = () => {
-		axios({
+	const login = async () => {
+		await axios({
 			method: "post",
 			data: {
 				username: loginUsername,
@@ -14,8 +14,19 @@ export default function Login() {
 			},
 			withCredentials: true,
 			url: "http://localhost:4000/admin/login",
-		}).then((res) => console.log(res));
+		}).then((res) => {
+			console.log(res);
+			axios({
+				method: "get",
+				withCredentials: true,
+				url: "http://localhost:4000/admin/login",
+			}).then((res) => {
+				console.log(res);
+				setAdmin(res.data);
+			});
+		});
 	};
+
 	return (
 		<div className="text-center">
 			<h1 className="mb-4">Login</h1>
