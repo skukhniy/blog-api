@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Login from "./Login";
 import axios from "axios";
+import BlogCards from "../components/BlogCards";
 
-export default function Admin({ adminData, setAdmin }) {
+export default function Admin({ adminData, setAdmin, posts }) {
 	// useEffect(() => {
 	// 	const checkAdmin = () => {
 	// 		axios({
@@ -30,6 +31,7 @@ export default function Admin({ adminData, setAdmin }) {
 				<h1>Authentication Failed</h1>
 				// <Navigate to="/admin/login" />
 			)}
+			{posts && posts.map((post) => <BlogCards post={post} />)}
 		</div>
 	);
 }

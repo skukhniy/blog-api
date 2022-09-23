@@ -8,6 +8,7 @@ import PostPage from "./pages/PostPage";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import axios from "axios";
+import AdminEditPost from "./pages/AdminEditPost";
 
 function App() {
 	const [posts, setPosts] = useState(null);
@@ -42,10 +43,21 @@ function App() {
 		checkAdmin();
 	}, []);
 
+	// create individual pages for each blog post
 	let postRoutes;
 	if (posts) {
 		postRoutes = posts.map((post) => (
 			<Route path={`/post/${post._id}`} element={<PostPage post={post} />} />
+		));
+	}
+
+	let adminPostRoutes;
+	if (posts) {
+		adminPostRoutes = posts.map((post) => (
+			<Route
+				path={`/admin/post/${post._id}`}
+				element={<AdminEditPost post={post} />}
+			/>
 		));
 	}
 
@@ -60,7 +72,11 @@ function App() {
 						path="/admin/"
 						element={
 							adminData ? (
-								<Admin adminData={adminData} setAdmin={setAdmin} />
+								<Admin
+									adminData={adminData}
+									setAdmin={setAdmin}
+									posts={posts}
+								/>
 							) : (
 								<Navigate to="/admin/login" />
 							)
@@ -78,6 +94,7 @@ function App() {
 						}
 					/>
 					{posts && postRoutes}
+					{posts && adminPostRoutes}
 				</Routes>
 			</BrowserRouter>
 		</div>
