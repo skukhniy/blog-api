@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 export default function AdminEditPost({ post }) {
@@ -31,70 +33,71 @@ export default function AdminEditPost({ post }) {
 	return (
 		<div className="">
 			<h4 className="text-center">Post ID: {post._id}</h4>
-			<Container>
-				<Row className="mt-3">
-					<Col xs={5}></Col>
-					<Col>
-						<label className="">Title:</label>
-					</Col>
-					<Col>
-						<input
-							value={title}
-							name="title"
-							onChange={(e) => setTitle(e.target.value)}
-						></input>
-					</Col>
-					<Col xs={4}></Col>
-				</Row>
-				<Row className="mt-3">
-					<Col xs={5}></Col>
-					<Col>
-						<label className="">Content:</label>
-					</Col>
-					<Col>
-						<textarea
-							value={content}
-							name="content"
-							onChange={(e) => setContent(e.target.value)}
-						>
-							{post.content}{" "}
-						</textarea>
-					</Col>
-					<Col xs={4}></Col>
-				</Row>
-				<Row className="mt-3">
-					<Col xs={5}></Col>
-					<Col>
-						<label>Topic:</label>
-					</Col>
-					<Col>
-						<input
-							className=""
-							value={topic}
-							name="topic"
-							onChange={(e) => setTopic(e.target.value)}
-						></input>
-					</Col>
-					<Col xs={4}></Col>
-				</Row>
-				<Row className="mt-3">
-					<Col xs={5}></Col>
-					<Col>
-						<label>Published:</label>
-					</Col>
-					<Col>
-						<select onChange={(e) => setPublished(e.target.value)}>
-							<option>true</option>
-							<option>false</option>
-						</select>
-					</Col>
-					<Col xs={5}></Col>
-				</Row>
-			</Container>
+
+			<div className="d-flex justify-content-center">
+				<div className="" style={{ width: "30%" }}>
+					<Form>
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label column sm={2}>
+								Title:
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Control
+									value={title}
+									onChange={(e) => setTitle(e.target.value)}
+								/>
+							</Col>
+						</Form.Group>
+
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label column sm={2}>
+								Content:
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Control
+									as="textarea"
+									rows={3}
+									value={content}
+									onChange={(e) => setContent(e.target.value)}
+								/>
+							</Col>
+						</Form.Group>
+
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label column sm={2}>
+								Topic:
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Control
+									value={topic}
+									onChange={(e) => setTopic(e.target.value)}
+								/>
+							</Col>
+						</Form.Group>
+
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label as="legend" column sm={2}>
+								Published
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Select
+									defaultValue={`${published}`}
+									onChange={(e) => setPublished(e.target.value)}
+								>
+									<option>true</option>
+									<option>false</option>
+								</Form.Select>
+							</Col>
+						</Form.Group>
+					</Form>
+				</div>
+			</div>
+
 			<div className="d-flex justify-content-center mt-4">
-				<button className="" onClick={updatePost}>
+				<Button type="submit" onClick={updatePost}>
 					Save
-				</button>
+				</Button>
+				{/* <Button type="submit">Save</Button> */}
 			</div>
 		</div>
 	);
