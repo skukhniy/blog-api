@@ -11,9 +11,9 @@ export default function Home({ posts }) {
 		console.log(filteredPosts);
 	}
 	return (
-		<div>
+		<div className="">
 			<h1 className="text-center mb-5 mt-4">Welcome to the Blog!</h1>
-			<div className="d-flex justify-content-center">
+			<div className="d-flex justify-content-center flex-wrap">
 				{filteredPosts &&
 					filteredPosts.map((post) => (
 						<BlogCards post={post} adminCheck={true} />

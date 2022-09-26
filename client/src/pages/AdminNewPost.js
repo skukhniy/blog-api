@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-export default function AdminEditPost({ post }) {
-	const [title, setTitle] = useState(post.title);
-	const [content, setContent] = useState(post.content);
-	const [topic, setTopic] = useState(post.topic);
-	const [published, setPublished] = useState(post.published);
+export default function AdminNewPost() {
+	const [title, setTitle] = useState(null);
+	const [content, setContent] = useState(null);
+	const [topic, setTopic] = useState(null);
+	const [published, setPublished] = useState(false);
 
-	const updatePost = async () => {
+	const newPost = async () => {
 		console.log("save button clicked");
 		await axios({
-			method: "patch",
+			method: "post",
 			data: {
 				title: title,
 				content: content,
@@ -24,7 +23,7 @@ export default function AdminEditPost({ post }) {
 				date: Date.now(),
 			},
 			withCredentials: true,
-			url: `http://localhost:4000/api/${post._id}/`,
+			url: `http://localhost:4000/api/`,
 		}).then((res) => {
 			console.log(res);
 		});
@@ -32,10 +31,10 @@ export default function AdminEditPost({ post }) {
 
 	return (
 		<div className="">
-			<h4 className="text-center">Post ID: {post._id}</h4>
+			<h4 className="text-center mb-4">Add a New Post</h4>
 
 			<div className="d-flex justify-content-center">
-				<div className="" style={{ width: "30%" }}>
+				<div className="" style={{ width: "50%" }}>
 					<Form>
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label column sm={2}>
@@ -56,7 +55,7 @@ export default function AdminEditPost({ post }) {
 							<Col sm={10}>
 								<Form.Control
 									as="textarea"
-									rows={3}
+									rows={5}
 									value={content}
 									onChange={(e) => setContent(e.target.value)}
 								/>
@@ -95,7 +94,7 @@ export default function AdminEditPost({ post }) {
 
 			<div className="d-flex justify-content-center mt-4">
 				<a href="/admin">
-					<Button type="submit" onClick={updatePost}>
+					<Button type="submit" onClick={newPost}>
 						Save
 					</Button>
 				</a>

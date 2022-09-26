@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import axios from "axios";
 import AdminEditPost from "./pages/AdminEditPost";
+import AdminNewPost from "./pages/AdminNewPost";
 
 function App() {
 	const [posts, setPosts] = useState(null);
@@ -91,6 +92,13 @@ function App() {
 							) : (
 								<Login adminData={adminData} setAdmin={setAdmin} />
 							)
+						}
+					/>
+					<Route
+						exact
+						path="/admin/newpost"
+						element={
+							adminData ? <AdminNewPost /> : <Navigate to="/admin/login" />
 						}
 					/>
 					{posts && postRoutes}
