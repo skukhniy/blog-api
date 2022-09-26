@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -23,6 +22,17 @@ export default function AdminEditPost({ post }) {
 				published: published,
 				date: Date.now(),
 			},
+			withCredentials: true,
+			url: `http://localhost:4000/api/${post._id}/`,
+		}).then((res) => {
+			console.log(res);
+		});
+	};
+
+	const deletePost = async () => {
+		console.log("save button clicked");
+		await axios({
+			method: "delete",
 			withCredentials: true,
 			url: `http://localhost:4000/api/${post._id}/`,
 		}).then((res) => {
@@ -97,6 +107,11 @@ export default function AdminEditPost({ post }) {
 				<a href="/admin">
 					<Button type="submit" onClick={updatePost}>
 						Save
+					</Button>
+				</a>
+				<a href="/admin" className="ms-5 text-decoration-none ">
+					<Button type="submit" onClick={deletePost} variant="danger">
+						Delete
 					</Button>
 				</a>
 			</div>
