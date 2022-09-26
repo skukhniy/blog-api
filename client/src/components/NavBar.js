@@ -16,7 +16,7 @@ export default function NavBar({ adminData }) {
 					</Nav>
 					{adminData && (
 						<Nav className="">
-							<Nav.Link href="/">Admin</Nav.Link>
+							<Nav.Link href="/admin">Admin</Nav.Link>
 						</Nav>
 					)}
 				</Navbar.Collapse>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -20,7 +20,7 @@ export default function AdminEditPost({ post }) {
 				title: title,
 				content: content,
 				topic: topic,
-				published: true,
+				published: published,
 				date: Date.now(),
 			},
 			withCredentials: true,
@@ -84,8 +84,8 @@ export default function AdminEditPost({ post }) {
 									defaultValue={`${published}`}
 									onChange={(e) => setPublished(e.target.value)}
 								>
-									<option>true</option>
-									<option>false</option>
+									<option value={true}>true</option>
+									<option value={false}>false</option>
 								</Form.Select>
 							</Col>
 						</Form.Group>
@@ -94,9 +94,12 @@ export default function AdminEditPost({ post }) {
 			</div>
 
 			<div className="d-flex justify-content-center mt-4">
-				<Button type="submit" onClick={updatePost}>
-					Save
-				</Button>
+				<a href="/admin">
+					<Button type="submit" onClick={updatePost}>
+						Save
+					</Button>
+				</a>
+
 				{/* <Button type="submit">Save</Button> */}
 			</div>
 		</div>
