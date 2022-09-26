@@ -31,7 +31,8 @@ export default function Admin({ adminData, setAdmin, posts }) {
 				<h1>Authentication Failed</h1>
 				// <Navigate to="/admin/login" />
 			)}
-			{posts && posts.map((post) => <BlogCards post={post} />)}
+			{posts &&
+				posts.map((post) => <BlogCards post={post} adminCheck={false} />)}
 		</div>
 	);
 }
