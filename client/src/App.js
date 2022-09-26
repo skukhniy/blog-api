@@ -64,7 +64,7 @@ function App() {
 	return (
 		<div>
 			<BrowserRouter>
-				<NavBar />
+				<NavBar adminData={adminData} />
 				<Routes>
 					<Route exact path="/" element={<Home posts={posts} />} />
 					<Route

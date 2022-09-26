@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 
-export default function NavBar() {
+export default function NavBar({ adminData }) {
 	return (
 		<Navbar className="navbar-custom" variant="light" expand="xl" fixed="top">
 			<Container>
@@ -14,6 +14,11 @@ export default function NavBar() {
 					<Nav className="ms-auto">
 						<Nav.Link href="/">Home</Nav.Link>
 					</Nav>
+					{adminData && (
+						<Nav className="">
+							<Nav.Link href="/">Admin</Nav.Link>
+						</Nav>
+					)}
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
