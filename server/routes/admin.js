@@ -2,35 +2,31 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const Admin = require("../models/admin");
+const controller = require("../controllers/loginController");
+const passport = require("passport");
 
-//
-router.get("/login", (req, res) => {});
+// get user info after authenticated
+router.get("/login", (req, res) => {
+	res.send(req.user);
+});
+
 // recieve login info
-router.post("/login");
+router.post("/login", (req, res, next) => {
+	passport.authenticate("local", (err, user, info) => {
+		if (err) throw err;
+		if (!user) res.send("Incorrect User or Password");
+		// if (!user) res.send(user);
+		else {
+			req.logIn(user, (err) => {
+				if (err) throw err;
+				res.send("Succesfully Authenticated");
+				console.log(req.user);
+			});
+		}
+	})(req, res, next);
+});
 
 // add admin
-router.post("/signup", async (req, res) => {
-	try {
-		console.log("trying bcrypt");
-		// hash password
-		const hashedPassword = await bcrypt.hash(req.body.password, 10);
-		// model schema
-		var admin = new Admin({
-			username: req.body.username,
-			password: hashedPassword,
-		});
-		// saves user to the DB
-		admin.save(function (err) {
-			if (err) {
-				return next(err);
-			} else {
-				return res.status(201).json(admin);
-			}
-		});
-	} catch (error) {
-		console.log("bycrypt failed :(");
-		console.error(error);
-	}
-});
+router.post("/signup", controller.addAdmin);
 
 module.exports = router;

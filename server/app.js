@@ -8,11 +8,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
-
-const initalizePassport = require("./passport-config");
-initalizePassport(passport, (username) =>
-	users.find((user) => user.username === username)
-);
+const cors = require("cors");
 
 // configs dotenv so the database URL can be grabbed from the env file
 dotenv.config();
@@ -41,18 +37,28 @@ app.set("view engine", "ejs");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(
+	cors({
+		origin: "http://localhost:3000", // allow to server to accept request from different origin
+		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+		credentials: true, // allow session cookie from browser to pass through
+	})
+);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(flash());
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
-		resave: false,
-		saveUninitialized: false,
+		resave: true,
+		saveUninitialized: true,
 	})
 );
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
+
+const initalizePassport = require("./passport-config");
+initalizePassport(passport);
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);

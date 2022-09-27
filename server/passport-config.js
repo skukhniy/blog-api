@@ -1,31 +1,39 @@
 const LocalStrategy = require("passport-local").Strategy;
+const Admin = require("./models/admin");
 const bcrypt = require("bcrypt");
 
 function initalize(passport) {
 	// check if login matches admin
 	const authenticateUser = async (username, password, done) => {
-		const user = getUserByUsername(username);
-		if (user == null) {
-			return done(null, false, { message: "No admin with that username" });
-		}
-		// compare password w/ hashed password
-		try {
-			if (await bcrypt.compare(password, user.password)) {
-				return done(null, user);
-			} else {
-				return done(null, false, { message: "Password incorrect" });
-			}
-		} catch (e) {
-			return done(e);
-		}
+		Admin.findOne({ username: username }, (err, user) => {
+			if (err) throw err;
+			if (!user) return done(null, false);
+			bcrypt.compare(password, user.password, (err, result) => {
+				if (err) throw err;
+				if (result == true) {
+					return done(null, user);
+				} else {
+					return done(null, false);
+				}
+			});
+		});
 	};
 
 	// init passport
 	passport.use(
 		new LocalStrategy({ usernameField: "username" }, authenticateUser)
 	);
-	passport.serializeUser((user, done) => {});
-	passport.deserializeUser((id, done) => {});
+	passport.serializeUser((user, callback) => {
+		callback(null, user.id);
+	});
+	passport.deserializeUser((id, callback) => {
+		Admin.findOne({ _id: id }, (err, user) => {
+			const userInfo = {
+				username: user.username,
+			};
+			callback(err, userInfo);
+		});
+	});
 }
 
 module.exports = initalize;
