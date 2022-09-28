@@ -6,7 +6,13 @@ import Navbar from "react-bootstrap/Navbar";
 
 export default function NavBar({ adminData }) {
 	return (
-		<Navbar className="navbar-custom" variant="light" expand="xl" fixed="top">
+		<Navbar
+			className="navbar-custom"
+			variant="light"
+			expand="xl"
+			// fixed="top"
+			style={{ borderBottom: "3px solid green", backgroundColor: "white" }}
+		>
 			<Container>
 				<Navbar.Brand>Stan's Blog </Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />

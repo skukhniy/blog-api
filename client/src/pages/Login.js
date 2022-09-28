@@ -54,7 +54,7 @@ export default function Login({ adminData, setAdmin }) {
 					Password
 				</label>
 				<input
-					type="text"
+					type="password"
 					id="password"
 					name="password"
 					onChange={(e) => setPassword(e.target.value)}

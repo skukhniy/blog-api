@@ -4,29 +4,38 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import PicUpload from "../components/PicUpload";
 
 export default function AdminEditPost({ post }) {
 	const [title, setTitle] = useState(post.title);
 	const [content, setContent] = useState(post.content);
 	const [topic, setTopic] = useState(post.topic);
 	const [published, setPublished] = useState(post.published);
+	const [img, setImg] = useState(null);
+	const [alert, setAlert] = useState("");
 
 	const updatePost = async () => {
 		console.log("save button clicked");
-		await axios({
-			method: "patch",
-			data: {
-				title: title,
-				content: content,
-				topic: topic,
-				published: published,
-				date: Date.now(),
-			},
-			withCredentials: true,
-			url: `http://localhost:4000/api/${post._id}/`,
-		}).then((res) => {
-			console.log(res);
-		});
+		let data = new FormData();
+		data.append("title", title);
+		data.append("content", content);
+		data.append("topic", topic);
+		data.append("published", published);
+		data.append("date", Date.now());
+		data.append("img", img);
+		console.log(data);
+
+		const config = {
+			headers: { "content-type": "multipart/form-data" },
+		};
+
+		await axios
+			.patch(`http://localhost:4000/api/${post._id}`, data, config)
+			.then((res) => {
+				console.log(res);
+				console.log(img);
+				setAlert("Changes Saved");
+			});
 	};
 
 	const deletePost = async () => {
@@ -42,10 +51,16 @@ export default function AdminEditPost({ post }) {
 
 	return (
 		<div className="">
-			<h4 className="text-center">Post ID: {post._id}</h4>
-
+			<h4 className="text-center mt-3 mb-3">Post ID: {post._id}</h4>
+			<div>
+				{alert ? (
+					<p className="text-center mt-2 text-success">{alert}</p>
+				) : (
+					<p></p>
+				)}
+			</div>
 			<div className="d-flex justify-content-center">
-				<div className="" style={{ width: "30%" }}>
+				<div className="" style={{ width: "50%" }}>
 					<Form>
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label column sm={2}>
@@ -99,17 +114,26 @@ export default function AdminEditPost({ post }) {
 								</Form.Select>
 							</Col>
 						</Form.Group>
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label as="legend" column sm={2}>
+								Image:
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Control
+									onChange={(e) => setImg(e.target.files[0])}
+									type="file"
+								></Form.Control>
+							</Col>
+						</Form.Group>
 					</Form>
 				</div>
 			</div>
 
 			<div className="d-flex justify-content-center mt-4">
-				<a href="/admin">
-					<Button type="submit" onClick={updatePost}>
-						Save
-					</Button>
-				</a>
-				<a href="/admin" className="ms-5 text-decoration-none ">
+				<Button type="submit" onClick={updatePost} className="me-3">
+					Save
+				</Button>
+				<a href="/admin" className="text-decoration-none">
 					<Button type="submit" onClick={deletePost} variant="danger">
 						Delete
 					</Button>

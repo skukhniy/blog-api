@@ -4,28 +4,33 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import PicUpload from "../components/PicUpload";
 
 export default function AdminNewPost() {
 	const [title, setTitle] = useState(null);
 	const [content, setContent] = useState(null);
 	const [topic, setTopic] = useState(null);
 	const [published, setPublished] = useState(false);
+	const [img, setImg] = useState(null);
 
 	const newPost = async () => {
 		console.log("save button clicked");
-		await axios({
-			method: "post",
-			data: {
-				title: title,
-				content: content,
-				topic: topic,
-				published: published,
-				date: Date.now(),
-			},
-			withCredentials: true,
-			url: `http://localhost:4000/api/`,
-		}).then((res) => {
+
+		let data = new FormData();
+		data.append("title", title);
+		data.append("content", content);
+		data.append("topic", topic);
+		data.append("published", published);
+		data.append("date", Date.now());
+		data.append("img", img);
+
+		const config = {
+			headers: { "content-type": "multipart/form-data" },
+		};
+
+		await axios.post(`http://localhost:4000/api/`, data, config).then((res) => {
 			console.log(res);
+			console.log(img);
 		});
 	};
 
@@ -76,7 +81,7 @@ export default function AdminNewPost() {
 
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label as="legend" column sm={2}>
-								Published
+								Published:
 							</Form.Label>
 							<Col sm={10}>
 								<Form.Select
@@ -88,16 +93,25 @@ export default function AdminNewPost() {
 								</Form.Select>
 							</Col>
 						</Form.Group>
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label as="legend" column sm={2}>
+								Image:
+							</Form.Label>
+							<Col sm={10}>
+								<Form.Control
+									onChange={(e) => setImg(e.target.files[0])}
+									type="file"
+								></Form.Control>
+							</Col>
+						</Form.Group>
 					</Form>
 				</div>
 			</div>
 
 			<div className="d-flex justify-content-center mt-4">
-				<a href="/admin">
-					<Button type="submit" onClick={newPost}>
-						Save
-					</Button>
-				</a>
+				<Button type="submit" onClick={newPost}>
+					Save
+				</Button>
 			</div>
 		</div>
 	);
