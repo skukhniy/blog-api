@@ -24,13 +24,21 @@ exports.getOnePost = (req, res) => {
 exports.createPost = async (req, res) => {
 	console.log(req.body);
 	const url = req.protocol + "://" + req.get("host");
+	let img;
+	if (typeof req.file === undefined) {
+		img = null;
+	} else {
+		try {
+			url + "/public/images/" + req.file.filename;
+		} catch {}
+	}
 	const post = new Post({
 		title: req.body.title,
 		content: req.body.content,
 		topic: req.body.topic,
 		published: req.body.published,
 		date: req.body.date,
-		img: url + "/public/images/" + req.file.filename,
+		img: img,
 	});
 
 	try {
@@ -45,6 +53,7 @@ exports.createPost = async (req, res) => {
 
 // update post
 exports.updatePost = async (req, res) => {
+	console.log(req.file);
 	if (req.body.title != null) {
 		res.post.title = req.body.title;
 	}
@@ -60,7 +69,7 @@ exports.updatePost = async (req, res) => {
 	if (req.body.date != null) {
 		res.post.date = req.body.date;
 	}
-	if (req.file.filename != null) {
+	if (req.file != null) {
 		const url = req.protocol + "://" + req.get("host");
 		res.post.img = url + "/public/images/" + req.file.filename;
 	}
