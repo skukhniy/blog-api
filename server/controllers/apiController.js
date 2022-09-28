@@ -60,6 +60,10 @@ exports.updatePost = async (req, res) => {
 	if (req.body.date != null) {
 		res.post.date = req.body.date;
 	}
+	if (req.file.filename != null) {
+		const url = req.protocol + "://" + req.get("host");
+		res.post.img = url + "/public/images/" + req.file.filename;
+	}
 	try {
 		const updatedPost = await res.post.save();
 		res.json(updatedPost);

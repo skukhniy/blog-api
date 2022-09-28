@@ -12,7 +12,12 @@ router.get("/:id", controller.getPost, controller.getOnePost);
 router.post("/", controller.saveImg.single("img"), controller.createPost);
 
 // update post
-router.patch("/:id", controller.getPost, controller.updatePost);
+router.patch(
+	"/:id",
+	controller.saveImg.single("img"),
+	controller.getPost,
+	controller.updatePost
+);
 
 // delete post
 router.delete("/:id", controller.getPost, controller.deletePost);
