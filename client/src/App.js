@@ -16,6 +16,7 @@ function App() {
 	const [adminData, setAdmin] = useState(null);
 	// sets state and grabs post API
 	// will only fire one time
+	// also checks to see if Admin is logged in.
 	useEffect(() => {
 		const fetchPosts = async () => {
 			const response = await fetch("http://localhost:4000/api/");
@@ -71,6 +72,7 @@ function App() {
 					<Route
 						exact
 						path="/admin/"
+						// if admin isn't checked in, navigate to the login page
 						element={
 							adminData ? (
 								<Admin
