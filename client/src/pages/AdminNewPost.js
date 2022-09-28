@@ -12,6 +12,7 @@ export default function AdminNewPost() {
 	const [topic, setTopic] = useState(null);
 	const [published, setPublished] = useState(false);
 	const [img, setImg] = useState(null);
+	const [alert, setAlert] = useState("");
 
 	const newPost = async () => {
 		console.log("save button clicked");
@@ -31,13 +32,20 @@ export default function AdminNewPost() {
 		await axios.post(`http://localhost:4000/api/`, data, config).then((res) => {
 			console.log(res);
 			console.log(img);
+			setAlert("New Post Saved");
 		});
 	};
 
 	return (
 		<div className="">
 			<h4 className="text-center mb-4">Add a New Post</h4>
-
+			<div>
+				{alert ? (
+					<p className="text-center mt-2 text-success">{alert}</p>
+				) : (
+					<p></p>
+				)}
+			</div>
 			<div className="d-flex justify-content-center">
 				<div className="" style={{ width: "50%" }}>
 					<Form>
