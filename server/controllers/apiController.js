@@ -1,5 +1,7 @@
 const express = require("express");
 const { off } = require("../app");
+const uuidv4 = require("uuid/v4");
+const multer = require("multer");
 const Post = require("../models/posts");
 
 // get all posts
@@ -20,12 +22,15 @@ exports.getOnePost = (req, res) => {
 
 // create a post
 exports.createPost = async (req, res) => {
+	console.log(req.body);
+	const url = req.protocol + "://" + req.get("host");
 	const post = new Post({
 		title: req.body.title,
 		content: req.body.content,
 		topic: req.body.topic,
 		published: req.body.published,
 		date: req.body.date,
+		img: url + "/public/images/" + req.file.filename,
 	});
 
 	try {
@@ -34,6 +39,7 @@ exports.createPost = async (req, res) => {
 		res.status(201).json(newPost);
 	} catch (err) {
 		res.status(400).json({ message: err.message });
+		console.log(req);
 	}
 };
 
@@ -86,3 +92,30 @@ exports.getPost = async (req, res, next) => {
 	res.post = post;
 	next();
 };
+
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "./public/images");
+	},
+	filename: (req, file, cb) => {
+		const fileName = file.originalname.toLowerCase().split(" ").join("-");
+		cb(null, uuidv4() + "-" + fileName);
+	},
+});
+
+exports.saveImg = multer({
+	storage: storage,
+	fileFilter: (req, file, cb) => {
+		if (
+			file.mimetype == "image/png" ||
+			file.mimetype == "image/jpg" ||
+			file.mimetype == "image/jpeg"
+		) {
+			console.log("image saved");
+			cb(null, true);
+		} else {
+			cb(null, false);
+			return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+		}
+	},
+});

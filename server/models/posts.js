@@ -6,6 +6,7 @@ const PostSchema = mongoose.Schema({
 	topic: String,
 	published: Boolean,
 	date: Date,
+	img: String,
 });
 
 module.exports = mongoose.model("posts", PostSchema);

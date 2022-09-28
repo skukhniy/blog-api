@@ -9,7 +9,7 @@ router.get("/", controller.getPosts);
 router.get("/:id", controller.getPost, controller.getOnePost);
 
 // create post
-router.post("/", controller.createPost);
+router.post("/", controller.saveImg.single("img"), controller.createPost);
 
 // update post
 router.patch("/:id", controller.getPost, controller.updatePost);
