@@ -29,7 +29,7 @@ export default function AdminNewPost() {
 			headers: { "content-type": "multipart/form-data" },
 		};
 
-		await axios.post(`http://localhost:4000/api/`, data, config).then((res) => {
+		await axios.post(`/api/`, data, config).then((res) => {
 			console.log(res);
 			console.log(img);
 			setAlert("New Post Saved");

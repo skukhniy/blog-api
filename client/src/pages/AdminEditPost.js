@@ -29,13 +29,11 @@ export default function AdminEditPost({ post }) {
 			headers: { "content-type": "multipart/form-data" },
 		};
 
-		await axios
-			.patch(`http://localhost:4000/api/${post._id}`, data, config)
-			.then((res) => {
-				console.log(res);
-				console.log(img);
-				setAlert("Changes Saved");
-			});
+		await axios.patch(`/api/${post._id}`, data, config).then((res) => {
+			console.log(res);
+			console.log(img);
+			setAlert("Changes Saved");
+		});
 	};
 
 	const deletePost = async () => {
@@ -43,7 +41,7 @@ export default function AdminEditPost({ post }) {
 		await axios({
 			method: "delete",
 			withCredentials: true,
-			url: `http://localhost:4000/api/${post._id}/`,
+			url: `/api/${post._id}/`,
 		}).then((res) => {
 			console.log(res);
 		});

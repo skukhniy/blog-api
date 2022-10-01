@@ -12,7 +12,7 @@ export default function Admin({ adminData, setAdmin, posts }) {
 		await axios({
 			method: "post",
 			withCredentials: true,
-			url: "http://localhost:4000/admin/logout",
+			url: "/admin/logout",
 		}).then((res) => {
 			console.log(res);
 			setAdmin(null);

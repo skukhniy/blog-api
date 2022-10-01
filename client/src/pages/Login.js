@@ -15,7 +15,7 @@ export default function Login({ adminData, setAdmin }) {
 				password: loginPassword,
 			},
 			withCredentials: true,
-			url: "http://localhost:4000/admin/login",
+			url: "/admin/login",
 		}).then((res) => {
 			console.log(res);
 			if (res.data === "Incorrect User or Password") {
@@ -25,7 +25,7 @@ export default function Login({ adminData, setAdmin }) {
 				axios({
 					method: "get",
 					withCredentials: true,
-					url: "http://localhost:4000/admin/login",
+					url: "/admin/login",
 				}).then((res) => {
 					console.log(res);
 					setAdmin(res.data);
