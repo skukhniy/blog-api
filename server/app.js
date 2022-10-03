@@ -44,8 +44,11 @@ app.use(
 		credentials: true, // allow session cookie from browser to pass through
 	})
 );
-// app.use(express.static(path.join(__dirname, "public")));
-app.use("/public", express.static("public"));
+app.use(express.static(path.join(__dirname, "build")));
+app.get("/", function (req, res) {
+	res.sendFile("build", "index.html");
+});
+// app.use("/public", express.static("public"));
 app.use(flash());
 app.use(
 	session({
