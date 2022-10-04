@@ -36,7 +36,7 @@ router.post("/user-profile", upload.single("profileImg"), (req, res, next) => {
 	const user = new User({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.name,
-		profileImg: url + "/public/" + req.file.filename,
+		profileImg: url + "/public/images" + req.file.filename,
 	});
 	user
 		.save()
