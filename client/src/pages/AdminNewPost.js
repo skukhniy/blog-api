@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { Editor, EditorState } from "draft-js";
+import { Editor, EditorState, RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
 import PicUpload from "../components/PicUpload";
 

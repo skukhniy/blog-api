@@ -23,13 +23,14 @@ exports.getOnePost = (req, res) => {
 // create a post
 exports.createPost = async (req, res) => {
 	console.log(req.body);
+	// const url = req.protocol + "://" + req.get("host");
 	const url = req.protocol + "://" + req.get("host");
 	let img;
 	if (typeof req.file === undefined) {
 		img = null;
 	} else {
 		try {
-			url + "/public/images/" + req.file.filename;
+			url + "/images/" + req.file.filename;
 		} catch {}
 	}
 	const post = new Post({
@@ -71,7 +72,7 @@ exports.updatePost = async (req, res) => {
 	}
 	if (req.file != null) {
 		const url = req.protocol + "://" + req.get("host");
-		res.post.img = url + "/public/images/" + req.file.filename;
+		res.post.img = url + "/images/" + req.file.filename;
 	}
 	try {
 		const updatedPost = await res.post.save();
