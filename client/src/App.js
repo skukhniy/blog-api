@@ -19,7 +19,7 @@ function App() {
 	// also checks to see if Admin is logged in.
 	useEffect(() => {
 		const fetchPosts = async () => {
-			const response = await fetch("http://localhost:4000/api/");
+			const response = await fetch("/api/");
 			const json = await response.json();
 
 			if (response.ok) {
@@ -31,7 +31,7 @@ function App() {
 			axios({
 				method: "get",
 				withCredentials: true,
-				url: "http://localhost:4000/admin/login",
+				url: "/admin/login",
 			}).then((res) => {
 				console.log(res);
 				if (res.data) {
