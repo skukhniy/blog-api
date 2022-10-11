@@ -131,7 +131,7 @@ export default function AdminEditPost({ post }) {
 				<Button type="submit" onClick={updatePost} className="me-3">
 					Save
 				</Button>
-				<a href="/admin" className="text-decoration-none">
+				<a href="/administrator" className="text-decoration-none">
 					<Button type="submit" onClick={deletePost} variant="danger">
 						Delete
 					</Button>
