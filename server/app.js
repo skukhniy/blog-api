@@ -49,7 +49,6 @@ app.get("/", function (req, res) {
 	res.sendFile("build", "index.html");
 });
 // app.use("/public", express.static("public"));
-app.use(flash());
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
@@ -60,6 +59,8 @@ app.use(
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
 
 const initalizePassport = require("./passport-config");
 initalizePassport(passport);
