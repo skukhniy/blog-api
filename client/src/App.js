@@ -72,11 +72,8 @@ function App() {
 					<Route
 						exact
 						path="/administrator/"
-<<<<<<< HEAD
 						// if admin isn't checked in, navigate to the login page
-=======
 						// if administrator isn't checked in, navigate to the login page
->>>>>>> b2ab747f27fc0fa84e8dccf6af0e6d3dc85fe792
 						element={
 							adminData ? (
 								<Admin
@@ -104,15 +101,13 @@ function App() {
 						exact
 						path="/administrator/newpost"
 						element={
-<<<<<<< HEAD
 							adminData ? <AdminNewPost /> : <Navigate to="/administrator/login" />
-=======
+
 							adminData ? (
 								<AdminNewPost />
 							) : (
 								<Navigate to="/administrator/login" />
 							)
->>>>>>> b2ab747f27fc0fa84e8dccf6af0e6d3dc85fe792
 						}
 					/>
 					{posts && postRoutes}
