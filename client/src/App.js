@@ -101,8 +101,6 @@ function App() {
 						exact
 						path="/administrator/newpost"
 						element={
-							adminData ? <AdminNewPost /> : <Navigate to="/administrator/login" />
-
 							adminData ? (
 								<AdminNewPost />
 							) : (

@@ -49,10 +49,6 @@ app.get("/", function (req, res) {
 	res.sendFile("build", "index.html");
 });
 // app.use("/public", express.static("public"));
-<<<<<<< HEAD
-=======
-
->>>>>>> b2ab747f27fc0fa84e8dccf6af0e6d3dc85fe792
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
@@ -64,10 +60,6 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-<<<<<<< HEAD
-
-=======
->>>>>>> b2ab747f27fc0fa84e8dccf6af0e6d3dc85fe792
 
 const initalizePassport = require("./passport-config");
 initalizePassport(passport);
