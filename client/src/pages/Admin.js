@@ -27,7 +27,7 @@ export default function Admin({ adminData, setAdmin, posts }) {
 				// <Navigate to="/admin/login" />
 			)}
 
-			<Link to="/admin/newpost">
+			<Link to="/administrator/newpost">
 				<Button className="mb-4">Add a New Post</Button>
 			</Link>
 			<div

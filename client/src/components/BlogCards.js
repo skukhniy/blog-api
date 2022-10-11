@@ -9,7 +9,7 @@ export default function BlogCards({ post, adminCheck }) {
 	if (adminCheck) {
 		postLink = `/post/${post._id}`;
 	} else {
-		postLink = `/admin/post/${post._id}`;
+		postLink = `/administrator/post/${post._id}`;
 	}
 
 	return (
