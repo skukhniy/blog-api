@@ -57,7 +57,7 @@ function App() {
 	if (posts) {
 		adminPostRoutes = posts.map((post) => (
 			<Route
-				path={`/admin/post/${post._id}`}
+				path={`/administrator/post/${post._id}`}
 				element={<AdminEditPost post={post} />}
 			/>
 		));
@@ -71,8 +71,8 @@ function App() {
 					<Route exact path="/" element={<Home posts={posts} />} />
 					<Route
 						exact
-						path="/admin/"
-						// if admin isn't checked in, navigate to the login page
+						path="/administrator/"
+						// if administrator isn't checked in, navigate to the login page
 						element={
 							adminData ? (
 								<Admin
@@ -81,16 +81,16 @@ function App() {
 									posts={posts}
 								/>
 							) : (
-								<Navigate to="/admin/login" />
+								<Navigate to="/administrator/login" />
 							)
 						}
 					/>
 					<Route
 						exact
-						path="/admin/login"
+						path="/administrator/login"
 						element={
 							adminData ? (
-								<Navigate to="/admin" />
+								<Navigate to="/administrator" />
 							) : (
 								<Login adminData={adminData} setAdmin={setAdmin} />
 							)
@@ -98,9 +98,13 @@ function App() {
 					/>
 					<Route
 						exact
-						path="/admin/newpost"
+						path="/administrator/newpost"
 						element={
-							adminData ? <AdminNewPost /> : <Navigate to="/admin/login" />
+							adminData ? (
+								<AdminNewPost />
+							) : (
+								<Navigate to="/administrator/login" />
+							)
 						}
 					/>
 					{posts && postRoutes}

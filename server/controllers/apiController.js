@@ -1,5 +1,4 @@
 const express = require("express");
-const { off } = require("../app");
 const uuidv4 = require("uuid/v4");
 const multer = require("multer");
 const Post = require("../models/posts");
