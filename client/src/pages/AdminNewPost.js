@@ -4,9 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { Editor, EditorState, RichUtils } from "draft-js";
-import "draft-js/dist/Draft.css";
-import PicUpload from "../components/PicUpload";
+import TextEditor from "../components/TextEditor";
 
 export default function AdminNewPost() {
 	const [title, setTitle] = useState(null);
@@ -15,9 +13,6 @@ export default function AdminNewPost() {
 	const [published, setPublished] = useState(false);
 	const [img, setImg] = useState(null);
 	const [alert, setAlert] = useState("");
-	const [editorState, setEditorState] = useState(() =>
-		EditorState.createEmpty()
-	);
 
 	const newPost = async () => {
 		console.log("save button clicked");
@@ -45,7 +40,8 @@ export default function AdminNewPost() {
 		<div className="">
 			<h4 className="text-center mb-4 pt-3">Add a New Post</h4>
 
-			<Editor editorState={editorState} onChange={setEditorState} />
+			<TextEditor />
+
 			<div>
 				{alert ? (
 					<p className="text-center mt-2 text-success">{alert}</p>
