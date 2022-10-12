@@ -5,10 +5,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import TextEditor from "../components/TextEditor";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
 export default function AdminNewPost() {
 	const [title, setTitle] = useState(null);
 	const [content, setContent] = useState(null);
+	const [editor, setEditor] = useState(null);
 	const [topic, setTopic] = useState(null);
 	const [published, setPublished] = useState(false);
 	const [img, setImg] = useState(null);
@@ -19,7 +22,7 @@ export default function AdminNewPost() {
 
 		let data = new FormData();
 		data.append("title", title);
-		data.append("content", content);
+		data.append("content", editor.getHTML());
 		data.append("topic", topic);
 		data.append("published", published);
 		data.append("date", Date.now());
@@ -40,8 +43,6 @@ export default function AdminNewPost() {
 		<div className="">
 			<h4 className="text-center mb-4 pt-3">Add a New Post</h4>
 
-			<TextEditor />
-
 			<div>
 				{alert ? (
 					<p className="text-center mt-2 text-success">{alert}</p>
@@ -49,7 +50,7 @@ export default function AdminNewPost() {
 					<p></p>
 				)}
 			</div>
-			<div className="d-flex justify-content-center">
+			<div className="d-flex justify-content-center mb-4">
 				<div className="" style={{ width: "50%" }}>
 					<Form>
 						<Form.Group as={Row} className="mb-3">
@@ -60,20 +61,6 @@ export default function AdminNewPost() {
 								<Form.Control
 									value={title}
 									onChange={(e) => setTitle(e.target.value)}
-								/>
-							</Col>
-						</Form.Group>
-
-						<Form.Group as={Row} className="mb-3">
-							<Form.Label column sm={2}>
-								Content:
-							</Form.Label>
-							<Col sm={10}>
-								<Form.Control
-									as="textarea"
-									rows={5}
-									value={content}
-									onChange={(e) => setContent(e.target.value)}
 								/>
 							</Col>
 						</Form.Group>
@@ -118,6 +105,7 @@ export default function AdminNewPost() {
 					</Form>
 				</div>
 			</div>
+			<TextEditor editor={editor} setEditor={setEditor} />
 
 			<div className="d-flex justify-content-center mt-4">
 				<Button type="submit" onClick={newPost}>
