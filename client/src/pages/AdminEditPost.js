@@ -4,11 +4,18 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import PicUpload from "../components/PicUpload";
+import TextEditor from "../components/TextEditor";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
 export default function AdminEditPost({ post }) {
 	const [title, setTitle] = useState(post.title);
-	const [content, setContent] = useState(post.content);
+	const [editor, setEditor] = useState(
+		useEditor({
+			extensions: [StarterKit],
+			content: post.content,
+		})
+	);
 	const [topic, setTopic] = useState(post.topic);
 	const [published, setPublished] = useState(post.published);
 	const [img, setImg] = useState(null);
@@ -18,7 +25,7 @@ export default function AdminEditPost({ post }) {
 		console.log("save button clicked");
 		let data = new FormData();
 		data.append("title", title);
-		data.append("content", content);
+		data.append("content", editor.getHTML());
 		data.append("topic", topic);
 		data.append("published", published);
 		data.append("date", Date.now());
@@ -74,20 +81,6 @@ export default function AdminEditPost({ post }) {
 
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label column sm={2}>
-								Content:
-							</Form.Label>
-							<Col sm={10}>
-								<Form.Control
-									as="textarea"
-									rows={3}
-									value={content}
-									onChange={(e) => setContent(e.target.value)}
-								/>
-							</Col>
-						</Form.Group>
-
-						<Form.Group as={Row} className="mb-3">
-							<Form.Label column sm={2}>
 								Topic:
 							</Form.Label>
 							<Col sm={10}>
@@ -126,6 +119,8 @@ export default function AdminEditPost({ post }) {
 					</Form>
 				</div>
 			</div>
+
+			<TextEditor editor={editor} setEditor={setEditor} post={post} />
 
 			<div className="d-flex justify-content-center mt-4">
 				<Button type="submit" onClick={updatePost} className="me-3">

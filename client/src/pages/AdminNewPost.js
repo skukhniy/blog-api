@@ -10,13 +10,13 @@ import StarterKit from "@tiptap/starter-kit";
 
 export default function AdminNewPost() {
 	const [title, setTitle] = useState(null);
-	const [content, setContent] = useState(null);
 	const [editor, setEditor] = useState(null);
 	const [topic, setTopic] = useState(null);
 	const [published, setPublished] = useState(false);
 	const [img, setImg] = useState(null);
 	const [alert, setAlert] = useState("");
 
+	console.log(editor);
 	const newPost = async () => {
 		console.log("save button clicked");
 

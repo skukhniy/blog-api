@@ -132,18 +132,17 @@ const MenuBar = ({ editor }) => {
 	);
 };
 
-export default function TextEditor({ editor, setEditor }) {
+export default function TextEditor({ editor, setEditor, post }) {
+	let postContent;
+	if (post) {
+		postContent = post.content;
+	} else {
+		postContent = `<p>Example text</p>`;
+	}
 	setEditor(
 		useEditor({
 			extensions: [StarterKit],
-			content: `
-      <h2>
-        Hi there,
-      </h2>
-      <p>
-        this is a <em>basic</em> example of <strong>tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-      </p>
-    `,
+			content: postContent,
 		})
 	);
 

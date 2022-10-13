@@ -18,7 +18,7 @@ export default function BlogCards({ post, adminCheck }) {
 				<img src={post.img} style={{ height: "auto", width: "100%" }}></img>
 				<h3>{post.title}</h3>
 			</Link>
-			<p>{`${post.content.substring(0, 50)}...`}</p>
+			{/* <p>{`${post.content.substring(0, 50)}...`}</p> */}
 		</div>
 	);
 }
