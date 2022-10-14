@@ -9,7 +9,7 @@ body {
 		border-radius: 7%;
 	}
 	padding: 5px;
-	width: 66%;
+	width: 33%;
 }
 
 .adminBlogCard {
@@ -21,4 +21,24 @@ body {
 }
 
 .homeHeader {
+	background-color: rgb(199, 237, 199);
+	padding-top: 30px;
+	padding-bottom: 20px;
+	img {
+		width: 10%;
+	}
+}
+
+.navBar {
+	span {
+		color: darkgreen;
+		font-weight: 400;
+	}
+	a {
+		color: rgba(0, 128, 0, 0.675);
+	}
+}
+
+.postPage {
+	background-color: rgb(199, 237, 199);
 }

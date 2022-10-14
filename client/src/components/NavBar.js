@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 export default function NavBar({ adminData }) {
 	return (
 		<Navbar
-			className="navbar-custom"
+			className="navbar-custom navBar"
 			variant="light"
 			expand="xl"
 			// fixed="top"

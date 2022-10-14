@@ -1,5 +1,6 @@
 import React from "react";
 import BlogCards from "../components/BlogCards";
+import me from "../assets/imgs/Me.png";
 
 export default function Home({ posts }) {
 	// generate cards for each post
@@ -20,16 +21,14 @@ export default function Home({ posts }) {
 	}
 	return (
 		<div className="">
-			<div
-				style={{
-					backgroundColor: "lightgrey",
-					"padding-top": "50px",
-					"padding-bottom": "50px",
-				}}
-			>
-				<h1 className="text-center mt-0 mb-0">Welcome!</h1>
+			<div className="homeHeader d-sm-flex-col text-center">
+				<img className="rounded-circle headerPic" src={me} alt="Its me!"></img>
+				<h2 className="text-center mt-0 mb-0 font-weight-bolder">
+					Stanislav Kukhniy
+				</h2>
 				<p className="text-center">
-					This is a blog where I track my progress in becoming a web developer.
+					Welcome to my blog! This is where I track my progress in learning web
+					development, and software engineering in general.
 				</p>
 			</div>
 			<div

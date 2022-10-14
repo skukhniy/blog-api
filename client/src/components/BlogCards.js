@@ -21,7 +21,7 @@ export default function BlogCards({ post, adminCheck }) {
 		content = content.split(" ").slice(0, 10).join(" ") + "...";
 	} else {
 		postLink = `/post/${post._id}`;
-		content = content.split(" ").slice(0, 25).join(" ") + "...";
+		content = content.split(" ").slice(0, 15).join(" ") + "...";
 	}
 
 	return (
