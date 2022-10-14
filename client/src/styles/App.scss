@@ -1,3 +1,24 @@
 body {
 	height: 100%;
 }
+
+.blogCard {
+	img {
+		height: auto;
+		width: 90%;
+		border-radius: 7%;
+	}
+	padding: 5px;
+	width: 66%;
+}
+
+.adminBlogCard {
+	width: 30%;
+	img {
+		height: auto;
+		width: 100%;
+	}
+}
+
+.homeHeader {
+}

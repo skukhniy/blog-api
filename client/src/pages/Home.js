@@ -30,7 +30,7 @@ export default function Home({ posts }) {
 			>
 				{filteredPosts &&
 					filteredPosts.map((post) => (
-						<BlogCards post={post} adminCheck={true} />
+						<BlogCards post={post} adminCheck={false} />
 					))}
 			</div>
 		</div>

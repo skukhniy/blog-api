@@ -36,7 +36,7 @@ export default function Admin({ adminData, setAdmin, posts }) {
 			>
 				{/* render posts */}
 				{posts &&
-					posts.map((post) => <BlogCards post={post} adminCheck={false} />)}
+					posts.map((post) => <BlogCards post={post} adminCheck={true} />)}
 			</div>
 			<div>
 				<button className="mt-4 mb-3" onClick={logout}>
