@@ -21,19 +21,25 @@ export default function Home({ posts }) {
 	}
 	return (
 		<div className="">
-			<div className="homeHeader d-sm-flex-col text-center">
-				<img className="rounded-circle headerPic" src={me} alt="Its me!"></img>
-				<h2 className="text-center mt-0 mb-0 font-weight-bolder">
-					Stanislav Kukhniy
-				</h2>
-				<p className="text-center">
-					Welcome to my blog! This is where I track my progress in learning web
-					development, and software engineering in general.
-				</p>
+			<div className="homeHeader">
+				<div className="innerDiv d-sm-flex-col text-center">
+					<img
+						className="rounded-circle headerPic"
+						src={me}
+						alt="Its me!"
+					></img>
+					<h2 className="text-center mt-0 mb-0 font-weight-bolder">
+						Stanislav Kukhniy
+					</h2>
+					<p className="text-center mt-1">
+						Welcome to my blog! This is where I track my progress in learning
+						web development, and software engineering in general.
+					</p>
+				</div>
 			</div>
 			<div
-				className="d-flex justify-content-center flex-wrap text-center"
-				style={{ "margin-left": "10%", "margin-right": "10%" }}
+				className="d-flex justify-content-around flex-wrap text-center"
+				style={{ "margin-left": "5%", "margin-right": "5%" }}
 			>
 				{filteredPosts &&
 					filteredPosts.map((post) => (

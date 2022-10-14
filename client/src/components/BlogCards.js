@@ -26,7 +26,7 @@ export default function BlogCards({ post, adminCheck }) {
 
 	return (
 		<div
-			className={`border me-1 ms-1 p-2 mt-3 shadow ${
+			className={`border me-1 ms-1 p-2 mt-4 shadow ${
 				adminCheck ? "adminBlogCard" : "blogCard"
 			}`}
 		>
