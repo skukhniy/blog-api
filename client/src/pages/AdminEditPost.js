@@ -28,7 +28,6 @@ export default function AdminEditPost({ post }) {
 		data.append("content", editor.getHTML());
 		data.append("topic", topic);
 		data.append("published", published);
-		data.append("date", Date.now());
 		data.append("img", img);
 		console.log(data);
 

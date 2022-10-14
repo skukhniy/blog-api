@@ -6,8 +6,16 @@ export default function Home({ posts }) {
 	// const renderCards = posts.map((post) => <BlogCards post={post} />);
 	console.log(posts);
 	let filteredPosts = posts;
+	// if not null, return a filtered array of posts
 	if (filteredPosts !== null) {
+		// sort by published === true
 		filteredPosts = filteredPosts.filter((post) => post.published);
+		// sort by newest date to oldest date
+		filteredPosts = filteredPosts.sort((a, b) => {
+			var dateA = new Date(a.date);
+			var dateB = new Date(b.date);
+			return dateB - dateA;
+		});
 		console.log(filteredPosts);
 	}
 	return (
