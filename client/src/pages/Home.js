@@ -24,7 +24,7 @@ export default function Home({ posts }) {
 			<div className="homeHeader">
 				<div className="innerDiv d-sm-flex-col text-center">
 					<img
-						className="rounded-circle headerPic"
+						className="rounded-circle headerPic img-fluid"
 						src={me}
 						alt="Its me!"
 					></img>

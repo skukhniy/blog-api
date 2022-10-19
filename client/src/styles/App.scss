@@ -23,19 +23,12 @@ body {
 	height: 100%;
 }
 
-.adminBlogCard {
-	img {
-		height: auto;
-		width: 100%;
-	}
-}
-
 .homeHeader {
 	background-color: rgb(199, 237, 199);
 	padding-top: 30px;
 	padding-bottom: 20px;
 	img {
-		width: 20%;
+		max-width: 150px;
 	}
 	display: flex;
 	justify-content: center;
