@@ -1,7 +1,3 @@
-body {
-	height: 100%;
-}
-
 .blogCard {
 	img {
 		height: auto;
@@ -11,9 +7,23 @@ body {
 	padding: 5px;
 	width: 30%;
 }
+@media (max-width: 985px) {
+	.blogCard {
+		img {
+			height: auto;
+			width: 90%;
+			border-radius: 7%;
+		}
+		padding: 5px;
+		width: 100%;
+	}
+}
+
+body {
+	height: 100%;
+}
 
 .adminBlogCard {
-	width: 30%;
 	img {
 		height: auto;
 		width: 100%;
