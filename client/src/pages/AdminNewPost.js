@@ -19,14 +19,17 @@ export default function AdminNewPost() {
 	console.log(editor);
 	const newPost = async () => {
 		console.log("save button clicked");
+		console.log(img);
 
 		let data = new FormData();
+
+		await data.append("img", img);
 		data.append("title", title);
 		data.append("content", editor.getHTML());
 		data.append("topic", topic);
 		data.append("published", published);
 		data.append("date", Date.now());
-		data.append("img", img);
+		console.log(data);
 
 		const config = {
 			headers: { "content-type": "multipart/form-data" },
@@ -34,7 +37,6 @@ export default function AdminNewPost() {
 
 		await axios.post(`/api/`, data, config).then((res) => {
 			console.log(res);
-			console.log(img);
 			setAlert("New Post Saved");
 		});
 	};
@@ -91,6 +93,7 @@ export default function AdminNewPost() {
 								</Form.Select>
 							</Col>
 						</Form.Group>
+
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label as="legend" column sm={2}>
 								Image:
@@ -105,6 +108,7 @@ export default function AdminNewPost() {
 					</Form>
 				</div>
 			</div>
+
 			<TextEditor editor={editor} setEditor={setEditor} />
 
 			<div className="d-flex justify-content-center mt-4">

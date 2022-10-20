@@ -25,11 +25,11 @@ exports.createPost = async (req, res) => {
 	// const url = req.protocol + "://" + req.get("host");
 	const url = req.protocol + "://" + req.get("host");
 	let img;
-	if (typeof req.file === undefined) {
-		img = null;
-	} else {
+	if (req.file != null) {
+		console.log("req.file is not null");
 		try {
-			url + "/images/" + req.file.filename;
+			const url = req.protocol + "://" + req.get("host");
+			img = url + "/images/" + req.file.filename;
 		} catch {}
 	}
 	const post = new Post({
