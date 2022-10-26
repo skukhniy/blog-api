@@ -1,9 +1,7 @@
 # RESTful API Blog
+![blog pic](https://www.stanislavkukhniy.com/static/media/blog-screenshot.896a0f8d.png)
 
 ### [Live Demo](http://18.234.147.248/)
-
-
-![blog pic](https://www.stanislavkukhniy.com/static/media/blog-screenshot.896a0f8d.png)
 
 #### 📝 Description
 A MERN-stack blog app using a RESTful API. Deployed with AWS EC2. Actively updated with blog posts about projects I am working on.
