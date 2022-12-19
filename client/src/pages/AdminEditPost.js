@@ -104,6 +104,7 @@ export default function AdminEditPost({ post }) {
 								</Form.Select>
 							</Col>
 						</Form.Group>
+            
 						<Form.Group as={Row} className="mb-3">
 							<Form.Label as="legend" column sm={2}>
 								Image:
