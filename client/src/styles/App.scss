@@ -1,53 +1,63 @@
 .blogCard {
-	img {
-		height: auto;
-		width: 90%;
-		border-radius: 7%;
-	}
-	padding: 5px;
-	width: 30%;
+  img {
+    height: auto;
+    width: 90%;
+    border-radius: 7%;
+  }
+  padding: 5px;
+  width: 30%;
 }
 @media (max-width: 985px) {
-	.blogCard {
-		img {
-			height: auto;
-			width: 90%;
-			border-radius: 7%;
-		}
-		padding: 5px;
-		width: 100%;
-	}
+  .blogCard {
+    img {
+      height: auto;
+      width: 90%;
+      border-radius: 7%;
+    }
+    padding: 5px;
+    width: 100%;
+  }
 }
 
 body {
-	height: 100%;
+  height: 100%;
 }
 
 .homeHeader {
-	background-color: rgb(199, 237, 199);
-	padding-top: 30px;
-	padding-bottom: 20px;
-	img {
-		max-width: 150px;
-	}
-	display: flex;
-	justify-content: center;
+  background-color: rgb(199, 237, 199);
+  padding-top: 30px;
+  padding-bottom: 20px;
+  img {
+    max-width: 150px;
+  }
+  display: flex;
+  justify-content: center;
 
-	& .innerDiv {
-		width: 50%;
-	}
+  & .innerDiv {
+    width: 50%;
+  }
 }
 
 .navBar {
-	span {
-		color: darkgreen;
-		font-weight: 400;
-	}
-	a {
-		color: rgba(0, 128, 0, 0.675);
-	}
+  span {
+    color: darkgreen;
+    font-weight: 400;
+  }
+  a {
+    color: rgba(0, 128, 0, 0.675);
+  }
+}
+
+.footer {
+  // background-color: rgb(199, 237, 199);
+  background-color: lightblue;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .postPage {
-	background-color: rgb(199, 237, 199);
+  background-color: rgb(199, 237, 199);
+  padding-bottom: 30px;
 }
