@@ -4,9 +4,7 @@ import { SocialIcon } from 'react-social-icons';
 export default function Footer() {
   return (
     <div className="footer">
-      <div>
-        <h3></h3>
-      </div>
+      <div></div>
       <div>
         <SocialIcon
           url="skukhniy@gmail.com"
