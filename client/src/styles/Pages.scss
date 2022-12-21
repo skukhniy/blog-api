@@ -24,3 +24,16 @@
     padding-bottom: 30px;
   }
 }
+
+.login {
+  & .loginInput {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+
+.adminEditPost {
+  & .editPostButtons {
+    margin-bottom: 20px;
+  }
+}

@@ -21,8 +21,17 @@
   }
 }
 
+html,
 body {
   height: 100%;
+}
+#root {
+}
+.root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .navBar {
@@ -36,6 +45,10 @@ body {
 }
 
 .footer {
+  position: relative;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
   background-color: rgb(199, 237, 199);
   // background-color: lightblue;
   display: flex;
