@@ -1,3 +1,5 @@
+@import 'Pages.scss';
+
 .blogCard {
   img {
     height: auto;
@@ -23,21 +25,6 @@ body {
   height: 100%;
 }
 
-.homeHeader {
-  background-color: rgb(199, 237, 199);
-  padding-top: 30px;
-  padding-bottom: 20px;
-  img {
-    max-width: 150px;
-  }
-  display: flex;
-  justify-content: center;
-
-  & .innerDiv {
-    width: 50%;
-  }
-}
-
 .navBar {
   span {
     color: darkgreen;
@@ -53,8 +40,19 @@ body {
   background-color: lightblue;
   height: 100px;
   display: flex;
+  flex-direction: column;
+
   align-items: center;
-  justify-content: center;
+
+  h3 {
+    margin-top: 15px;
+  }
+  & .github {
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+  }
 }
 
 .postPage {

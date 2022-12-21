@@ -1,0 +1,17 @@
+.home {
+  margin-bottom: 40px;
+}
+.homeHeader {
+  background-color: rgb(199, 237, 199);
+  padding-top: 30px;
+  padding-bottom: 20px;
+  img {
+    max-width: 150px;
+  }
+  display: flex;
+  justify-content: center;
+
+  & .innerDiv {
+    width: 50%;
+  }
+}
