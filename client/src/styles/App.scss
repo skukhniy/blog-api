@@ -36,11 +36,11 @@ body {
 }
 
 .footer {
-  // background-color: rgb(199, 237, 199);
-  background-color: lightblue;
-  height: 100px;
+  background-color: rgb(199, 237, 199);
+  // background-color: lightblue;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 
   align-items: center;
 
@@ -53,9 +53,4 @@ body {
       color: grey;
     }
   }
-}
-
-.postPage {
-  background-color: rgb(199, 237, 199);
-  padding-bottom: 30px;
 }
