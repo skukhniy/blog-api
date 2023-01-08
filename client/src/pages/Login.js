@@ -7,7 +7,9 @@ export default function Login({ adminData, setAdmin }) {
   const [loginPassword, setPassword] = useState('');
   const [errorDisplay, setError] = useState(null);
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
+    console.log('login submitted');
     await axios({
       method: 'post',
       data: {
@@ -37,8 +39,8 @@ export default function Login({ adminData, setAdmin }) {
 
   return (
     <div className="text-center login">
-      <h1 className="mb-4">Login</h1>
-      <div className="loginInput">
+      <h1 className="mb-4 mt-3">Login</h1>
+      <form className="loginInput" onSubmit={login}>
         <div className="mb-2">
           <label className="me-1" for="username">
             Username
@@ -61,10 +63,11 @@ export default function Login({ adminData, setAdmin }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-      </div>
-      <button onClick={login} type="submit">
-        Login
-      </button>
+        <button type="submit" className="mb-4">
+          Login
+        </button>
+      </form>
+
       {errorDisplay && (
         <p className="text-danger fw-bold mt-4">{errorDisplay}</p>
       )}
