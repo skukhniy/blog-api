@@ -1,4 +1,130 @@
+.home {
+  margin-bottom: 40px;
+}
+
+.homeHeader {
+  background-color: #c7edc7;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.homeHeader img {
+  max-width: 150px;
+}
+
+.homeHeader .innerDiv {
+  width: 50%;
+}
+
+.postPage {
+  background-color: #c7edc7;
+  padding-bottom: 10px;
+}
+
+.postPage .displayContent {
+  padding-bottom: 30px;
+}
+
+.login .loginInput {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.adminEditPost .editPostButtons {
+  margin-bottom: 20px;
+}
+
+pre {
+  background: #0d0d0d;
+  color: #fff;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.blogCard {
+  padding: 5px;
+  width: 30%;
+}
+
+.blogCard img {
+  height: auto;
+  width: 90%;
+  border-radius: 7%;
+}
+
+@media (max-width: 985px) {
+  .blogCard {
+    padding: 5px;
+    width: 100%;
+  }
+  .blogCard img {
+    height: auto;
+    width: 90%;
+    border-radius: 7%;
+  }
+}
+
+html,
 body {
   height: 100%;
+}
+
+.root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navBar span {
+  color: darkgreen;
+  font-weight: 400;
+}
+
+.navBar a {
+  color: rgba(0, 128, 0, 0.675);
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  background-color: #c7edc7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer h3 {
+  margin-top: 15px;
+}
+
+.footer .github a {
+  text-decoration: none;
+  color: grey;
 }
 /*# sourceMappingURL=App.css.map */
